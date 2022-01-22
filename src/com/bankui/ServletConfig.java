@@ -1,18 +1,16 @@
 package com.bankui;
 
-import javax.sql.DataSource;
-
+ 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"com.bankui.controller"})
+@ComponentScan(basePackages = {"com.bankui.controller", "com.bankui.beans"})
 public class ServletConfig implements WebMvcConfigurer{
 
 	@Bean
@@ -23,11 +21,5 @@ public class ServletConfig implements WebMvcConfigurer{
 		return viewResolver;
 	}
 	 
-	@Bean
-	public DataSource dataSource() {
-		DriverManagerDataSource dataSource= 
-				new DriverManagerDataSource("jdbc:postgresql://localhost:5432/postgres", "postgres", "oais2ehe");
-		dataSource.setDriverClassName("org.postgresql.Driver");
-		return (DataSource) dataSource; 
-	}
+	 
 }
